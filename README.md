@@ -1,2 +1,2 @@
 # MyMathLib
-Repository for all the math related functions
+Repository for all the math and physics related functions
