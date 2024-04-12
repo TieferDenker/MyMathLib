@@ -78,7 +78,7 @@ def Distinct_Prime_Factors(Num):
 
 ###########################################################################################################
 # Function          : Total_Prime_Factors
-# Description       : This function returns the numbrer of prime factors of any natural number 'Num'.
+# Description       : This function returns the number of prime factors of any natural number 'Num'.
 # Input parameters  : A natural number
 # Return value      : Ω(n)
 ###########################################################################################################
@@ -550,18 +550,36 @@ import cmath
 
 Number_Of_Terms = 5
 
+###########################################################################################################
+# Function          : SawTooth
+# Description       : This function returns the value of the sawtooth function used in signal analysis
+# Input parameters  : A real number
+# Return value      : ((x))
+###########################################################################################################
 def SawTooth(x):
     if floor(x) == ceil(x):
         return 0
     else:
         return (x - floor(x) - 1/2)
 
+###########################################################################################################
+# Function          : D
+# Description       : This function returns the value of the Dedekind sum used in analytic number theory
+# Input parameters  : An integer
+# Return value      : D(a,b;c)
+###########################################################################################################
 def DedekindSum(a,b,c):
     Sum = 0
     for u in range(1,c):
         Sum = Sum + SawTooth(a*u/c)*SawTooth(b*u/c)
     return Sum
 
+###########################################################################################################
+# Function          : A
+# Description       : This is an auxillary function used in the computation of the value of p(n)
+# Input parameters  : Both the arguements are natural numbers
+# Return value      : D(a,b;c)
+###########################################################################################################
 def A(k,n):
     Trig_Sum = 0
     for m in range(0,k):
@@ -571,6 +589,13 @@ def A(k,n):
         m = m + 1
     return Trig_Sum
 
+###########################################################################################################
+# Function          : Derivative
+# Description       : This function calculates the derivative of a specific function
+#                     NOTE: It's not the general derivative operator
+# Input parameters  : Both the arguements are natural numbers
+# Return value      : Derivative(k,n)
+###########################################################################################################
 def Derivative(k,n):
     Aux_Val1 = sqrt(n-1/24)
     Aux_Val2 = 1/sqrt(n-1/24)
@@ -579,6 +604,12 @@ def Derivative(k,n):
     Diff_wrt_n_at_n_and_k = (Aux_Val1*math.cosh(Aux_Val3)*Aux_Val4-math.sinh(Aux_Val3)*Aux_Val2*0.5)/pow(Aux_Val1,2)
     return Diff_wrt_n_at_n_and_k
 
+###########################################################################################################
+# Function          : p
+# Description       : This function calculates the number of possible partitions of a non-negative integer n
+# Input parameters  : A natural number
+# Return value      : p(n)
+###########################################################################################################
 def p(n):
     if (n == 0) or (n == 1) or (n == 2):
         return 1
@@ -590,6 +621,12 @@ def p(n):
             k = k + 1
         return round(Result / (pi * sqrt(2)))
 
+###########################################################################################################
+# Function          : Bernoulli
+# Description       : This function calculates the kth Bernoulli nuber
+# Input parameters  : A natural number
+# Return value      : B_k
+###########################################################################################################
 def Bernoulli(k):
     if k%2 == 1:
         if k == 1:
@@ -614,6 +651,12 @@ def Bernoulli(k):
         elif k == 14:
             return 7/6
 
+###########################################################################################################
+# Function          : E2k
+# Description       : This function calculates the value of the Eisenstein series of weight 2k and complex period tau
+# Input parameters  : k-> A natural number, tau-> A complex number
+# Return value      : E_{2k}
+###########################################################################################################
 def E2k(k,tau):
     if tau.imag > 0:
         N = 200
@@ -625,6 +668,12 @@ def E2k(k,tau):
     else:
         return cmath.inf
 
+###########################################################################################################
+# Function          : j
+# Description       : This function calculates the j-invariant of the complex number tau used in complex analysis
+# Input parameters  : tau-> A complex number
+# Return value      : j(tau)
+###########################################################################################################
 def j(tau):
     E4 = E2k(2,tau)
     E6 = E2k(3,tau)
