@@ -8,7 +8,10 @@
 ###########################################################################################################
 
 #Important Libraries
+import cmath
 import math
+from math import ceil, cos, exp, factorial, floor, gcd, log, pi, sin, sqrt
+import random
 
 #Famous Mathematical Constants
 pi =  3.1415926535897932384626433
@@ -22,7 +25,42 @@ sq_5 = 2.2360679774997896964091736
 zeta_2 = 1.6449340668482264364724151
 zeta_3 = 1.2020569031595942853997381
 
+# Small primes for deterministic primality testing
+SMALL_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+
 #Function Definitions:
+
+###########################################################################################################
+# Function          : is_prime
+# Description       : This function checks whether a given number 'n' is a prime or not.
+# Input parameters  : A natural number
+# Return value      : 1_p(n)
+###########################################################################################################
+def is_prime(n, k=10):
+    if n in SMALL_PRIMES:
+        return True
+    if n <= 1 or n % 2 == 0 or n%3 == 0 or n%5 == 0 or n%7 == 0 or n%11 == 0 or n%13 == 0 or n%17 == 0 or n%19 == 0 or n%23 == 0 or n%29 == 0 or n%31 == 0 or n%37 == 0 or n%41 == 0 or n%43 == 0 or n%47 == 0:
+        return False
+
+    # Write n as d*2^r + 1
+    r, d = 0, n - 1
+    while d % 2 == 0:
+        r += 1
+        d //= 2
+
+    # Witness loop
+    for _ in range(k):
+        a = random.randint(2, n - 1)
+        x = pow(a, d, n)
+        if x == 1 or x == n - 1:
+            continue
+        for _ in range(r - 1):
+            x = pow(x, 2, n)
+            if x == n - 1:
+                break
+        else:
+            return False
+    return True
 
 ###########################################################################################################
 # Function          : d
@@ -53,12 +91,12 @@ def sigma(Num):
     return Sum_Of_Divisors
 
 ###########################################################################################################
-# Function          : Distinct_Prime_Factors
+# Function          : distinct_Prime_Factors
 # Description       : This function returns the number of distinct prime factors of any natural number 'Num'.
 # Input parameters  : A natural number
 # Return value      : ω(n)
 ###########################################################################################################
-def Distinct_Prime_Factors(Num):
+def distinct_Prime_Factors(Num):
     Prime_Factors = 0
     if ((Num % 2) == 0):
         Prime_Factors = Prime_Factors + 1
@@ -83,69 +121,81 @@ def Distinct_Prime_Factors(Num):
 # Return value      : Ω(n)
 ###########################################################################################################
 def Total_Prime_Factors(Num):
-{
-    prime_factors=0;
-    while((Num%2)==0)
-    {
-        prime_factors++;
-        Num=Num/2;
-    }
-    for(i=3;i*i<=Num;i=i+2)
-    {
-        if(Num%i==0)
-        {
-            while((Num%i)==0)
-            {
-                prime_factors++;
-                Num=Num/i;
-            }
-        }
-    }
-    if(Num!=1)
-    prime_factors++;
-    return prime_factors;
-}
+    Prime_factors = 0
+    while (Num%2)==0:
+        Prime_factors = Prime_factors + 1;
+        Num = Num//2;
+    for i in range(3,int(sqrt(Num))+1,2)
+        if (Num%i==0):
+            while (Num%i)==0:
+                Prime_factors = Prime_factors + 1
+                Num = Num//i
+    if not(Num == 1):
+        Prime_factors = Prime_factors + 1
+    
+    return Prime_factors
 
-bool per_sq(int n)
-{
-    if(ceil((double)sqrt(n)) == floor((double)sqrt(n)))
-    return true;
-    return false;
-}
+###########################################################################################################
+# Function          : per_sq
+# Description       : This function checks whether a number 'Num' is a perfect square or not.
+# Input parameters  : A natural number
+# Return value      : per_sq(n)
+###########################################################################################################
+def per_sq(Num)
+    if (ceil(sqrt(Num)) == floor(sqrt(Num))):
+        return True
+    return false
 
-bool per_cb(int n)
-{
-    if(ceil((double)cbrt(n)) == floor((double)cbrt(n)))
-    return true;
-    return false;
-}
+###########################################################################################################
+# Function          : per_cb
+# Description       : This function checks whether a number 'Num' is a perfect cube or not.
+# Input parameters  : A natural number
+# Return value      : per_cb(n)
+###########################################################################################################
+def per_cb(Num)
+    if (ceil(cbrt(Num)) == floor(cbrt(Num))):
+        return True
+    return false
 
-int btod(int n) //returns decimal from binary input
-{
-    int i,decimal=0,pow=1,digit;
-    while(n!=0)
-    {
-        digit=n%10;
-        decimal=decimal+pow*digit;
-        pow=pow<<1;
-        n=n/10;
-    }
-    return decimal;
-}
+###########################################################################################################
+# Function          : btod
+# Description       : This function converts a number 'Num' from binary to decimal.
+# Input parameters  : A natural number
+# Return value      : btod(n)
+###########################################################################################################
+def btod(Num)
+    decimal = 0
+    power = 1
+    while not(Num == 0):
+        digit = Num%10
+        decimal = decimal + (power*digit)
+        power = power<<1
+        Num = Num//10
+    return decimal
 
-int dtob(int n) //returns binary from decimal input
-{
-    int i,binary=0,pow=1,digit;
-    while(n!=0)
-    {
-        digit=n%2;
-        binary=binary+pow*digit;
-        pow=pow*10;
-        n=n/2;
-    }
-    return binary;
-}
+###########################################################################################################
+# Function          : dtob
+# Description       : This function converts a number 'Num' from decimal to binary.
+# Input parameters  : A natural number
+# Return value      : dtob(n)
+###########################################################################################################
+def dtob(Num)
+    binary = 0
+    power = 1
+    while not(Num == 0):
+        digit = Num%2
+        binary = binary + (power*digit)
+        power = power*10
+        Num = Num//2
+    return binary
 
+# Start editing from here:
+###########################################################################################################
+# Function          : factorial
+# Description       : This function converts a number 'Num' from decimal to binary.
+# Input parameters  : A natural number
+# Return value      : per_sq(n)
+###########################################################################################################
 int factorial(int n) //returns the product of all natural numbers from 1 to 'n'
 {
     int i;
@@ -200,24 +250,6 @@ int reverse(int n) //returns the reverse of digits of any natural number 'n'
         m=m/10;
     }
     return sum;
-}
-
-bool prime(int n) //returns true if any natural number 'n' is prime
-{
-    int i;
-    if(n==2 || n==3 || n==5 || n==7 || n==11 || n==13 || n==17 || n==19 || n==23 || n==29 || n==31 || n==37 || n==41 || n==43 || n==47)
-    return true;
-    if(n==1 || n%2==0 || n%3==0 || n%5==0 || n%7==0 || n%11==0 || n%13==0 || n%17==0 || n%19==0 || n%23==0 || n%29==0 || n%31==0 || n%31==0 || n%37==0 || n%41==0 || n%43==0 || n%47==0)
-    return false;
-    else
-    {
-        for(i=5;i*i<=n;i=i+6)
-        {
-            if((n%i==0) || (n%(i+2)==0))
-            return false;
-        }
-    }
-    return true;
 }
 
 int prime_counting_fx(int n) //returns the number of primes less than or equal to any natural number 'n'
@@ -341,20 +373,6 @@ int cbr_4(int n) //returns the number of ways to write any natural number 'n' as
 
 
 
-def prime(n):
-    if n==0 or n==1:
-       return 0
-    for i in range(2,int(n**0.5)+1):
-        if n%i==0:
-           return 0
-    return 1
-
-def d(n):
-    s=0
-    for k in range(1,n+1):
-        if n%k==0:
-           s=s+1
-    return s
 
 def dig(n):
     s=0
@@ -375,13 +393,6 @@ def prodig(n):
            s=s*int(i)
     return s
 
-def sigma(n):
-    s=0
-    for k in range(1,n+1):
-        if n%k==0:
-            s=s+k
-    return s
-
 def pi(n):
     c=0
     for k in range(1,n+1):
@@ -398,25 +409,6 @@ def nthpri(n):
         elif q==n+1:
             break  
     return c
-
-def dtb(n):
-    s,k=0,0
-    while n>0:
-     m=n%2
-     s=s+m*(10**k)
-     n=int(n/2)
-     k=k+1
-    return s
-
-def btd(n):
-    k=0
-    s=0
-    while n!=0:
-     m=n%10
-     s=s+(2**k)*m
-     k=k+1
-     n=int(n/10)
-    return(s)
      
 def rev(n):
     s=0
@@ -525,28 +517,6 @@ def weirdp(n):
        return 1
     return 0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-from math import ceil, cos, exp, factorial, floor, gcd, log, pi, sin, sqrt
-import math
-import cmath
 
 Number_Of_Terms = 5
 
