@@ -189,124 +189,125 @@ def dtob(Num)
         Num = Num//2
     return binary
 
-# Start editing from here:
 ###########################################################################################################
 # Function          : factorial
-# Description       : This function converts a number 'Num' from decimal to binary.
+# Description       : This function returns the factorial of a number 'Num'.
 # Input parameters  : A natural number
-# Return value      : per_sq(n)
+# Return value      : n!
 ###########################################################################################################
-int factorial(int n) //returns the product of all natural numbers from 1 to 'n'
-{
-    int i;
-    if(n==0 || n==1)
-    return 1;
-    return n*factorial(n-1);
-}
+def factorial(Num)
+    if (Num == 0 || Num == 1):
+        return 1
+    return Num*factorial(Num-1)
 
-int num_of_digits(int n) //returns the sum of digits of any natural number 'n'
-{
-    int digit=0;
-    while(n!=0)
-    {
-        digit++;
-        n=n/10;
-    }
-    return digit;
-}
+###########################################################################################################
+# Function          : dig
+# Description       : This function returns the number of digits in a number 'Num'.
+# Input parameters  : A natural number
+# Return value      : dig(n)
+###########################################################################################################
+def dig(Num):
+    s = 0
+    for i in str(Num):
+        s = s+1
+    return s
 
-int sum_of_digits(int n) //returns the sum of digits of any natural number 'n'
-{
-    int digit, sum=0;
-    while(n!=0)
-    {
-        digit=n%10;
-        sum=sum+digit;
-        n=n/10;
-    }
-    return sum;
-}
+###########################################################################################################
+# Function          : sumdig
+# Description       : This function returns the sum of the digits in a number 'Num'.
+# Input parameters  : A natural number
+# Return value      : sumdig(n)
+###########################################################################################################
+def sumdig(Num):
+    s = 0
+    for i in str(Num):
+        s = s + int(i)
+    return s
 
-int prod_of_digits(int n) //returns the product of digits of any natural number 'n'
-{
-    int digit, pro=1;
-    while(n!=0)
-    {
-        digit=n%10;
-        pro=pro*digit;
-        n=n/10;
-    }
-    return pro;
-}
+###########################################################################################################
+# Function          : prodig
+# Description       : This function returns the sum of the digits in a number 'Num'.
+# Input parameters  : A natural number
+# Return value      : prodig(n)
+###########################################################################################################
+def prodig(Num):
+    s = 1
+    for i in str(Num):
+        if not(i == '0'):
+           s = s*int(i)
+    return s
 
-int reverse(int n) //returns the reverse of digits of any natural number 'n'
-{
-    int i,sum=0,digit,m=pow(10,num_of_digits(n)-1);
-    while(n!=0)
-    {
-        digit=n%10;
-        sum=sum+m*digit;
-        n=n/10;
-        m=m/10;
-    }
-    return sum;
-}
+###########################################################################################################
+# Function          : rev
+# Description       : This function returns reversed number 'Num'.
+# Input parameters  : A natural number
+# Return value      : rev(n)
+###########################################################################################################
+def rev(n):
+    s = 0
+    i = int(math.log10(n))
+    while (i >= 0): 
+        m = n%10
+        s = s+m*(10**i)
+        i = i-1
+        n = (n-m)/10
+    return int(s)
 
-int prime_counting_fx(int n) //returns the number of primes less than or equal to any natural number 'n'
-{
-    int prime_numbers=0;
-    iloop(2,n)
-    {
-        if(prime(i))
-        prime_numbers++;
-    }
-    return prime_numbers;
-}
+###########################################################################################################
+# Function          : pi
+# Description       : This function returns the number of primes less than or equal to 'n'.
+# Input parameters  : A natural number
+# Return value      : π(n)
+###########################################################################################################
+def pi(n):
+    c = 0
+    for k in range(1,n+1):
+        c = c + is_prime(k)
+    return c
 
-int nthprime(int n) //returns the 'n'th prime number where 'n' is any natural number
-{
-    int prime_numbers=0;
-    if(n==1)
-    return 2;
-    iloop(2,n*n)
-    {
-        if(prime(i))
-        prime_numbers++;
-        if(prime_numbers==n)
-        return i;
-    }
-}
+###########################################################################################################
+# Function          : nthpri
+# Description       : This function returns the nth prime number 'p_n'.
+# Input parameters  : A natural number
+# Return value      : p_n
+###########################################################################################################
+def nthpri(n):
+    c = 0
+    q = 0
+    for k in range(1,int(n**1.5)):
+        q = q + is_prime(k)
+        if (q == n):
+            c = k+1
+        elif (q == n+1):
+            break  
+    return c
 
-int fibo(int n) //returns the 'n'th Fibonacci number where 'n' is any natural number (n<=46)
-{
-    int a=0,b=1,c; 
-    if(n==0)
-    return 0;
-    else if(n==1 || n==2)
-    return 1;
-    else
-    {
-        while(n>=2)
-        {
-            c=a+b;
-            a=b;
-            b=c;
-            n--;
-        }
-        return c;
-    }
-}
-int gold_con(int n) //returns the number of ways to write wany natural number 'n' as the sum of two odd primes (order is important)
-{
-    int count=0;
-    iloop(3,n-3)
-    {
-        if(prime(i) && prime(n-i))
-        count++;
-    }
-    return count;
-}
+###########################################################################################################
+# Function          : nthfibo
+# Description       : This function returns the nth Fibonacci number 'F_n'.
+# Input parameters  : A whole number
+# Return value      : F_n
+###########################################################################################################
+def nthfibo(n):
+    x = -1/phi
+    m = int((phi**n-x**n)/(5**0.5))
+    return m
 
+###########################################################################################################
+# Function          : gold_con
+# Description       : This function returns the number of ways to write wany natural number 'n' as the sum
+#                     of two odd primes (order is important)
+# Input parameters  : An even natural number
+# Return value      : gold_con(n)
+###########################################################################################################
+def gold_con(n)
+    count = 0
+    for i in range(3,n-2,2):
+        if (is_prime(i) and is_prime(n-i)):
+            count = count + 1
+    return count
+
+# Start editing from here:
 int sqr_2(int n) //returns the number of ways to write any natural number 'n' as the sum of two squares (order is important)
 {
     int i,count=0;
@@ -371,60 +372,6 @@ int cbr_4(int n) //returns the number of ways to write any natural number 'n' as
 
 
 
-
-
-
-def dig(n):
-    s=0
-    for i in str(n):
-        s=s+1
-    return s
-
-def sumdig(n):
-    s=0
-    for i in str(n):
-        s=s+int(i)
-    return s
-
-def prodig(n):
-    s=1
-    for i in str(n):
-        if i!='0':
-           s=s*int(i)
-    return s
-
-def pi(n):
-    c=0
-    for k in range(1,n+1):
-        c=c+prime(k)
-    return c
-
-def nthpri(n):
-    c=0
-    q=0
-    for k in range(1,int(n**1.5)):
-        q=q+prime(k)
-        if q==n:
-           c=k+1
-        elif q==n+1:
-            break  
-    return c
-     
-def rev(n):
-    s=0
-    i=int(math.log10(n))
-    while i>=0: 
-        m=n%10
-        s=s+m*(10**i)
-        i=i-1
-        n=(n-m)/10
-    return int(s)
-
-def nthfibo(n):
-    phi=(1+5**0.5)/2
-    x=-1/phi
-    m=int((phi**n-x**n)/(5**0.5))
-    return m
 
 def gcd(m,n):
     while n!=0:
