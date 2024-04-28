@@ -1,3 +1,12 @@
+###########################################################################################################
+# Module name: Angad's Library of Communication Codes
+# Version: 0
+# Author: Angad Singh
+# Date created: 28.05.2024
+# Module description:
+# This module contains the list of almost all the codes related to data compression and error correction.
+###########################################################################################################
+
 from math import ceil, log2
 
 Input = {
