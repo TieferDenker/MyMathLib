@@ -308,23 +308,27 @@ def gold_con(n)
     return count
 
 # Start editing from here:
-int sqr_2(int n) //returns the number of ways to write any natural number 'n' as the sum of two squares (order is important)
-{
-    int i,count=0;
+###########################################################################################################
+# Function          : r_2
+# Description       : This function returns the number of ways to write any natural number 'n' as the 
+#                     sum of two squares (order is important)
+# Input parameters  : An even natural number
+# Return value      : r_2(n)
+###########################################################################################################
+def r_2(n)
+    count = 0;
     for(i=1;i*i<n;i++)
-    {
-        if(per_sq(n-i*i))
-        count++;
-    }
-    return count;
-}
+    for i in range(1,int(sqrt(n))+1):
+        if(per_sq(n-i*i)):
+            count = count + 1
+    return count
 
 int sqr_3(int n) //returns the number of ways to write any natural number 'n' as the sum of three squares (order is important)
 {
     int i,count=0;
     for(i=1;i*i<n;i++)
     {
-        count=count+sqr_2(n-i*i);
+        count=count+r_2(n-i*i);
     }
     return count;
 }
@@ -334,7 +338,7 @@ int sqr_4(int n) //returns the number of ways to write any natural number 'n' as
     int count=0;
     iloop(1,n-1)
     {
-        count=count+(sqr_2(i))*(sqr_2(n-i));
+        count=count+(r_2(i))*(r_2(n-i));
     }
     return count;
 }
