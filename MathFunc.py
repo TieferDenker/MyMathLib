@@ -312,7 +312,7 @@ def gold_con(n)
 # Function          : r_2
 # Description       : This function returns the number of ways to write any natural number 'n' as the 
 #                     sum of two squares (order is important)
-# Input parameters  : An even natural number
+# Input parameters  : A natural number
 # Return value      : r_2(n)
 ###########################################################################################################
 def r_2(n)
@@ -323,15 +323,18 @@ def r_2(n)
             count = count + 1
     return count
 
-int sqr_3(int n) //returns the number of ways to write any natural number 'n' as the sum of three squares (order is important)
-{
-    int i,count=0;
+###########################################################################################################
+# Function          : sqr_3
+# Description       : This function returns the number of ways to write any natural number 'n' as the 
+#                     sum of three squares (order is important)
+# Input parameters  : A natural number
+# Return value      : r_3(n)
+###########################################################################################################
+def sqr_3(n)
+    count = 0
     for(i=1;i*i<n;i++)
-    {
-        count=count+r_2(n-i*i);
-    }
-    return count;
-}
+        count = count + r_2(n-i*i)
+    return count
 
 int sqr_4(int n) //returns the number of ways to write any natural number 'n' as the sum of four squares (order is important)
 {
