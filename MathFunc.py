@@ -144,7 +144,7 @@ def Total_Prime_Factors(Num):
 def per_sq(Num)
     if (ceil(sqrt(Num)) == floor(sqrt(Num))):
         return True
-    return false
+    return False
 
 ###########################################################################################################
 # Function          : per_cb
@@ -155,7 +155,7 @@ def per_sq(Num)
 def per_cb(Num)
     if (ceil(cbrt(Num)) == floor(cbrt(Num))):
         return True
-    return false
+    return False
 
 ###########################################################################################################
 # Function          : btod
@@ -316,11 +316,12 @@ def gold_con(n)
 # Return value      : r_2(n)
 ###########################################################################################################
 def r_2(n)
-    count = 0;
-    for(i=1;i*i<n;i++)
-    for i in range(1,int(sqrt(n))+1):
-        if(per_sq(n-i*i)):
+    count = 0
+    i = 1
+    while i*i < n:
+        if per_sq(n-i*i):
             count = count + 1
+        i = i + 1
     return count
 
 ###########################################################################################################
@@ -332,30 +333,40 @@ def r_2(n)
 ###########################################################################################################
 def sqr_3(n)
     count = 0
-    for(i=1;i*i<n;i++)
+    i = 1
+    while i*i < n:
         count = count + r_2(n-i*i)
+        i = i + 1
     return count
 
-int sqr_4(int n) //returns the number of ways to write any natural number 'n' as the sum of four squares (order is important)
-{
-    int count=0;
-    iloop(1,n-1)
-    {
-        count=count+(r_2(i))*(r_2(n-i));
-    }
-    return count;
-}
+###########################################################################################################
+# Function          : sqr_4
+# Description       : This function returns the number of ways to write any natural number 'n' as the 
+#                     sum of four squares (order is important) (Used in Lagrange's theorem)
+# Input parameters  : A natural number
+# Return value      : r_4(n)
+###########################################################################################################
+def sqr_4(n)
+    count = 0
+    for i in range(1,n):
+        count = count+(r_2(i))*(r_2(n-i));
+    return count
 
-int cbr_2(int n) //returns the number of ways to write any natural number 'n' as the sum of two cubes (order is important)
-{
-    int i,count=0;  
-    for(i=1;i*i*i<n;i++)
-    {
-        if(per_cb(n-i*i*i))
-        count++;
-    }
-    return count;
-}
+###########################################################################################################
+# Function          : cbr_2
+# Description       : This function returns the number of ways to write any natural number 'n' as the 
+#                     sum of 2 cubes (order is important)
+# Input parameters  : A natural number
+# Return value      : cbr_2(n)
+###########################################################################################################
+def cbr_2(n)
+    count = 0  
+    i = 1
+    while i*i*i < n:
+        if per_cb(n-i*i*i):
+            count = count + 1
+        i = i + 1
+    return count
 
 int cbr_3(int n) //returns the number of ways to write any natural number 'n' as the sum of three cubes (order is important)
 {
