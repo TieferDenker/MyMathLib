@@ -368,25 +368,33 @@ def cbr_2(n)
         i = i + 1
     return count
 
-int cbr_3(int n) //returns the number of ways to write any natural number 'n' as the sum of three cubes (order is important)
-{
-    int i,count=0;  
-    for(i=1;i*i*i<=n;i++)
-    {
-        count=count+cbr_2(n-i*i*i);
-    }
-    return count;
-}
+###########################################################################################################
+# Function          : cbr_3
+# Description       : This function returns the number of ways to write any natural number 'n' as the 
+#                     sum of 3 cubes (order is important)
+# Input parameters  : A natural number
+# Return value      : cbr_3(n)
+###########################################################################################################
+def cbr_3(n)
+    count = 0  
+    i = 1
+    while i*i*i < n:
+        count = count+cbr_2(n-i*i*i)
+        i = i + 1
+    return count
 
-int cbr_4(int n) //returns the number of ways to write any natural number 'n' as the sum of four cubes (order is important)
-{
-    int count=0;    
-    iloop(1,n-1)
-    {
-        count=count+(cbr_2(i))*(cbr_2(n-i));
-    }
-    return count;
-}
+###########################################################################################################
+# Function          : cbr_4
+# Description       : This function returns the number of ways to write any natural number 'n' as the 
+#                     sum of 4 cubes (order is important)
+# Input parameters  : A natural number
+# Return value      : cbr_4(n)
+###########################################################################################################
+def cbr_4(n)
+    count = 0
+    for i in range(1,n):
+        count = count+(cbr_2(i))*(cbr_2(n-i))
+    return count
 
 
 
