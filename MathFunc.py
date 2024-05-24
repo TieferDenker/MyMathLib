@@ -396,9 +396,12 @@ def cbr_4(n)
         count = count+(cbr_2(i))*(cbr_2(n-i))
     return count
 
-
-
-
+###########################################################################################################
+# Function          : gcd
+# Description       : This function returns the greatest common divisor of the numbers 'n' and 'm'
+# Input parameters  : A natural number
+# Return value      : gcd(m,n)
+###########################################################################################################
 def gcd(m,n):
     while n!=0:
         x=m
@@ -406,6 +409,13 @@ def gcd(m,n):
         n=x%n
     return m
 
+###########################################################################################################
+# Function          : powofpri
+# Description       : This function returns the power of a given prime p in the prime factorization of the
+#                     number 'n'
+# Input parameters  : A natural number
+# Return value      : powofpri(n,p)
+###########################################################################################################
 def powofpri(n,p):
     c=0
     while n%p==0:
