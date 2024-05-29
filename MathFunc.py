@@ -423,9 +423,15 @@ def powofpri(n,p):
           n=n/p
     return c
 
+###########################################################################################################
+# Function          : perpow
+# Description       : This function checks whether the number 'n' is a perfect power or not                     number 'n'
+# Input parameters  : A natural number
+# Return value      : perpow(n)
+###########################################################################################################
 def perpow(n):
-    x=[]
-    c=0
+    x = []
+    c = 0
     for i in range(2,n+1):
         if prime(i)==1 and n%i==0:
            x.append(powofpri(n,i))
@@ -433,10 +439,10 @@ def perpow(n):
     for i in range(0,len(x)):
         if x[0]>=2 and x[i]%x[0]==0:
            c=c+1
-    if c==len(x):
-       return 1
+    if c == len(x):
+       return True
     else:
-          return 0
+          return False
 
 def angpri(n):
     c=0
