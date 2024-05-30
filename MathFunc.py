@@ -425,7 +425,7 @@ def powofpri(n,p):
 
 ###########################################################################################################
 # Function          : perpow
-# Description       : This function checks whether the number 'n' is a perfect power or not                     number 'n'
+# Description       : This function checks whether the number 'n' is a perfect power or not
 # Input parameters  : A natural number
 # Return value      : perpow(n)
 ###########################################################################################################
@@ -444,6 +444,12 @@ def perpow(n):
     else:
           return False
 
+###########################################################################################################
+# Function          : angpri
+# Description       : This function returns the number of Angad primes less than or equal to n
+# Input parameters  : A natural number
+# Return value      : angpri(n)
+###########################################################################################################
 def angpri(n):
     c=0
     for k in range(40000,n):
