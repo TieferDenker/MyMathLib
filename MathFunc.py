@@ -14,8 +14,8 @@ from math import ceil, cos, exp, factorial, floor, gcd, log, pi, sin, sqrt
 import random
 
 #Famous Mathematical Constants
-pi =  3.1415926535897932384626433
-tau =  6.28318530717958647692528676
+pi = 3.1415926535897932384626433
+tau = 6.28318530717958647692528676
 e = 2.7182818284590452353602874
 gamma = 0.5772156649015328606065120
 phi = 1.6180339887498948482045868
@@ -103,14 +103,16 @@ def distinct_Prime_Factors(Num):
         while((Num % 2) == 0):
             Num = Num / 2
 
-    for(i=3;i*i<=Num;i=i+2)
+    i = 3
+    while (i*i <= Num):
         if ((Num % i) == 0):
             Prime_Factors = Prime_Factors + 1
             while ((Num % i) == 0):
                 Num=Num/i
+        i = i + 2
 
     if (Num != 1):
-        Prime_Factors++
+        Prime_Factors = Prime_Factors + 1
 
     return Prime_Factors
 
@@ -125,7 +127,7 @@ def Total_Prime_Factors(Num):
     while (Num%2)==0:
         Prime_factors = Prime_factors + 1;
         Num = Num//2;
-    for i in range(3,int(sqrt(Num))+1,2)
+    for i in range(3,int(sqrt(Num))+1,2):
         if (Num%i==0):
             while (Num%i)==0:
                 Prime_factors = Prime_factors + 1
@@ -141,7 +143,7 @@ def Total_Prime_Factors(Num):
 # Input parameters  : A natural number
 # Return value      : per_sq(n)
 ###########################################################################################################
-def per_sq(Num)
+def per_sq(Num):
     if (ceil(sqrt(Num)) == floor(sqrt(Num))):
         return True
     return False
@@ -152,7 +154,7 @@ def per_sq(Num)
 # Input parameters  : A natural number
 # Return value      : per_cb(n)
 ###########################################################################################################
-def per_cb(Num)
+def per_cb(Num):
     if (ceil(cbrt(Num)) == floor(cbrt(Num))):
         return True
     return False
@@ -163,7 +165,7 @@ def per_cb(Num)
 # Input parameters  : A natural number
 # Return value      : btod(n)
 ###########################################################################################################
-def btod(Num)
+def btod(Num):
     decimal = 0
     power = 1
     while not(Num == 0):
@@ -179,7 +181,7 @@ def btod(Num)
 # Input parameters  : A natural number
 # Return value      : dtob(n)
 ###########################################################################################################
-def dtob(Num)
+def dtob(Num):
     binary = 0
     power = 1
     while not(Num == 0):
@@ -195,8 +197,8 @@ def dtob(Num)
 # Input parameters  : A natural number
 # Return value      : n!
 ###########################################################################################################
-def factorial(Num)
-    if (Num == 0 || Num == 1):
+def factorial(Num):
+    if (Num == 0) or (Num == 1):
         return 1
     return Num*factorial(Num-1)
 
@@ -300,7 +302,7 @@ def nthfibo(n):
 # Input parameters  : An even natural number
 # Return value      : gold_con(n)
 ###########################################################################################################
-def gold_con(n)
+def gold_con(n):
     count = 0
     for i in range(3,n-2,2):
         if (is_prime(i) and is_prime(n-i)):
@@ -315,7 +317,7 @@ def gold_con(n)
 # Input parameters  : A natural number
 # Return value      : r_2(n)
 ###########################################################################################################
-def r_2(n)
+def r_2(n):
     count = 0
     i = 1
     while i*i < n:
@@ -331,7 +333,7 @@ def r_2(n)
 # Input parameters  : A natural number
 # Return value      : r_3(n)
 ###########################################################################################################
-def sqr_3(n)
+def sqr_3(n):
     count = 0
     i = 1
     while i*i < n:
@@ -346,7 +348,7 @@ def sqr_3(n)
 # Input parameters  : A natural number
 # Return value      : r_4(n)
 ###########################################################################################################
-def sqr_4(n)
+def sqr_4(n):
     count = 0
     for i in range(1,n):
         count = count+(r_2(i))*(r_2(n-i));
@@ -359,7 +361,7 @@ def sqr_4(n)
 # Input parameters  : A natural number
 # Return value      : cbr_2(n)
 ###########################################################################################################
-def cbr_2(n)
+def cbr_2(n):
     count = 0  
     i = 1
     while i*i*i < n:
@@ -375,7 +377,7 @@ def cbr_2(n)
 # Input parameters  : A natural number
 # Return value      : cbr_3(n)
 ###########################################################################################################
-def cbr_3(n)
+def cbr_3(n):
     count = 0  
     i = 1
     while i*i*i < n:
@@ -390,7 +392,7 @@ def cbr_3(n)
 # Input parameters  : A natural number
 # Return value      : cbr_4(n)
 ###########################################################################################################
-def cbr_4(n)
+def cbr_4(n):
     count = 0
     for i in range(1,n):
         count = count+(cbr_2(i))*(cbr_2(n-i))
