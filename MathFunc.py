@@ -4,7 +4,7 @@
 # Author: Angad Singh
 # Date created: 06.05.2022
 # Module description:
-# This module contains the list of almost all the mathematical functions ever made.
+# This module contains the list of almost all the important number theoretic mathematical functions
 ###########################################################################################################
 
 #Important Libraries
@@ -437,11 +437,10 @@ def perpow(n):
     for i in range(2,n+1):
         if prime(i)==1 and n%i==0:
            x.append(powofpri(n,i))
-    x.sort()
-    for i in range(0,len(x)):
-        if x[0]>=2 and x[i]%x[0]==0:
-           c=c+1
-    if c == len(x):
+    g = x[0]
+    for i in range(1,len(x)):
+        g = gcd(g,x[i])
+    if g > 1:
        return True
     else:
           return False
